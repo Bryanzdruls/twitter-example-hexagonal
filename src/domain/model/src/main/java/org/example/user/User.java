@@ -1,7 +1,7 @@
 package org.example.user;
 
 import org.example.dashboard.Dashboard;
-import org.example.timeline.Timeline;
+import org.example.post.Post;
 import org.example.user.value.UserTag;
 import org.example.user.value.UserFollowers;
 import org.example.user.value.UserId;
@@ -26,32 +26,32 @@ public class User {
 
     private Dashboard dashboard;
 
-    private Timeline timeline;
+    private List<Post> timeline;
 
     public static List<User> generateUsers(){
         List<User> users = new ArrayList<User>();
         User alicia = new User(
-                UserTag.of("alizz"),
+                UserTag.of("alicia"),
                 UserName.of("alicia"),
                 new HashSet<>(),
                 new HashSet<>(),
                 new Dashboard(),
-                new Timeline()
+                new ArrayList<>()
         );
         User alfonso = new User(
-                UserTag.of("fonzo"),
+                UserTag.of("alfonso"),
                 UserName.of("alfonso"),
                 new HashSet<>(),
                 new HashSet<>(),
                 new Dashboard(),
-                new Timeline());
+                new ArrayList<>());
         User ivan = new User(
-                UserTag.of("ivvan"),
+                UserTag.of("ivan"),
                 UserName.of("ivan"),
                 new HashSet<>(),
                 new HashSet<>(),
                 new Dashboard(),
-                new Timeline()
+                new ArrayList<>()
         );
         users.add(alicia);
         users.add(ivan);
@@ -59,7 +59,7 @@ public class User {
         return users;
     }
 
-    public User( UserTag userTag, UserName userName, Set<User> userFollowers, Set<User> usersFollowings, Dashboard dashboard, Timeline timeline) {
+    public User( UserTag userTag, UserName userName, Set<User> userFollowers, Set<User> usersFollowings, Dashboard dashboard, List<Post> timeline) {
         this.userId = new UserId();
         this.userTag = userTag;
         this.userName = userName;
@@ -121,11 +121,11 @@ public class User {
         this.dashboard = dashboard;
     }
 
-    public Timeline getTimeline() {
+    public List<Post> getTimeline() {
         return timeline;
     }
 
-    public void setTimeline(Timeline timeline) {
+    public void setTimeline(List<Post> timeline) {
         this.timeline = timeline;
     }
 }

@@ -1,11 +1,11 @@
 package org.example;
 
-import org.example.generic.IExecuteFollow;
+import org.example.generic.IExecuteWithStringParam;
 import org.example.user.User;
 
 import java.util.Optional;
 
-public class FollowService implements IExecuteFollow<User> {
+public class FollowService implements IExecuteWithStringParam<User> {
     private final Repository repository;
 
     public FollowService() {
@@ -16,15 +16,15 @@ public class FollowService implements IExecuteFollow<User> {
     public User execute(String name) {
         System.out.println("El nombre es: "+ name);
         Optional<User> userOptional = repository.getUsers().stream()
-                .filter(user -> user.getUserTag().equals(name))
+                .filter(user -> user.getUserTag().value().equals(name))
                 .findFirst();
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            System.out.println("Usuario encontrado: " + user.getUserName());
+            System.out.println("Usuario encontrado: " + user.getUserName().value());
             return user;
         } else {
-            System.out.println("Usuario no encontrado");
+            System.out.println("No se encontro ningun usuario llamado @" + name);
             return null;
         }
     }
