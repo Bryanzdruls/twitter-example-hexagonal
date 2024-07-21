@@ -26,10 +26,14 @@ public class ValidationsUseCase implements IUseCase<String> {
     private final WallService wallService;
 
     public ValidationsUseCase() {
-        repository = Repository.repositoryInstance();
-        followService = new FollowService();
-        postService = new PostService();
-        wallService = new WallService();
+        this(Repository.repositoryInstance(), new FollowService(), new PostService(), new WallService());
+    }
+
+    public ValidationsUseCase(Repository repository, FollowService followService, PostService postService, WallService wallService) {
+        this.repository = repository;
+        this.followService = followService;
+        this.postService = postService;
+        this.wallService = wallService;
     }
 
     @Override
@@ -68,7 +72,7 @@ public class ValidationsUseCase implements IUseCase<String> {
         return null;
     }
 
-    private void handleFollowCommand(String origin, String destino) {
+     void handleFollowCommand(String origin, String destino) {
         User userBase = repository.getUsers().stream()
                 .filter(user -> user.getUserTag().value().equals(origin))
                 .findFirst().get();
@@ -80,14 +84,14 @@ public class ValidationsUseCase implements IUseCase<String> {
         }
     }
 
-    private void handlePostCommand(String origin, String message) {
+     void handlePostCommand(String origin, String message) {
         User userBase = repository.getUsers().stream()
                 .filter(user -> user.getUserTag().value().equals(origin))
                 .findFirst().get();
         userBase = postService.execute(userBase,origin,message);
     }
 
-    private void handleWallCommand(String destino) {
+    void handleWallCommand(String destino) {
         System.out.println("Mostrando wall de " + destino);
         User userBase = repository.getUsers().stream()
                 .filter(user -> user.getUserTag().value().equals(destino))

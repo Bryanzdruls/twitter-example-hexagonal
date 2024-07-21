@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class WallService implements IExecute<User> {
 
-
     @Override
     public User execute(User userBase) {
         List<List<Post>> generalPostUnorder = new ArrayList<>();
