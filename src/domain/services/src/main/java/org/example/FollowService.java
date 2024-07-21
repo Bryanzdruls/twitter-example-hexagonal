@@ -28,4 +28,9 @@ public class FollowService implements IExecuteWithStringParam<User> {
             return null;
         }
     }
+
+    @Override
+    public User execute(User generic, String value, String value2) {
+        throw new RuntimeException("Method not implemented");
+    }
 }
