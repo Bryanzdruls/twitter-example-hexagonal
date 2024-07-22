@@ -14,7 +14,6 @@ public class FollowService implements IExecuteWithStringParam<User> {
 
     @Override
     public User execute(String name) {
-        System.out.println("El nombre es: "+ name);
         Optional<User> userOptional = repository.getUsers().stream()
                 .filter(user -> user.getUserTag().value().equals(name))
                 .findFirst();
