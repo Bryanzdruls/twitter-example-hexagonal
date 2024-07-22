@@ -25,6 +25,7 @@ Se usa java nativo sin librerias ni framework para el desarrollo general de la a
 ![img_5.png](img_5.png)
 
 **Intento de follow por parte de alicia incorrecto**
+
 ![img_6.png](img_6.png)
 
 **Wall de alicia Y follow correcto de alfonso**
